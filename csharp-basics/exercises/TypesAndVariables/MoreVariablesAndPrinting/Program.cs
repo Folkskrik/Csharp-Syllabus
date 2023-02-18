@@ -6,26 +6,26 @@ namespace MoreVariablesAndPrinting
     {
         static void Main(string[] args)
         {
-            string Name, Eyes, Teeth, Hair;
-            int Age;
+            string name, eyes, teeth, hair;
+            int age;
 
-            Name = "Zed A. Shaw";
-            Age = 35;
-            double Height = 74.00 * 2.54;  // inches
-            double Weight = 180.00 * 0.45; // lbs
-            Eyes = "Blue";
-            Teeth = "White";
-            Hair = "Brown";
+            name = "Zed A. Shaw";
+            age = 35;
+            double height = 74.00 * 2.54;  // inches
+            double weight = 180.00 * 0.45; // lbs
+            eyes = "Blue";
+            teeth = "White";
+            hair = "Brown";
 
-            Console.WriteLine("Let's talk about " + Name + ".");
-            Console.WriteLine("He's " + Height + " inches tall.");
-            Console.WriteLine("He's " + Weight + " pounds heavy.");
+            Console.WriteLine("Let's talk about " + name + ".");
+            Console.WriteLine("He's " + height + " inches tall.");
+            Console.WriteLine("He's " + weight + " pounds heavy.");
             Console.WriteLine("Actually, that's not too heavy.");
-            Console.WriteLine("He's got " + Eyes + " eyes and " + Hair + " hair.");
-            Console.WriteLine("His teeth are usually " + Teeth + " depending on the coffee.");
+            Console.WriteLine("He's got " + eyes + " eyes and " + hair + " hair.");
+            Console.WriteLine("His teeth are usually " + teeth + " depending on the coffee.");
 
-            Console.WriteLine("If I add " + Age + ", " + Height + ", and " + Weight
-                               + " I get " + (Age + Height + Weight) + ".");
+            Console.WriteLine("If I add " + age + ", " + height + ", and " + weight
+                               + " I get " + (age + height + weight) + ".");
 
             Console.ReadKey();
         }
