@@ -14,7 +14,6 @@ namespace SadFor
             //fixme so I would compile
 
             int i;
-            
             for (i = 0; i < 10; i++)
             {
                 if (Math.Sqrt(i) > 2.5)
