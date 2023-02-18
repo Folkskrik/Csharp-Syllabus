@@ -1,4 +1,6 @@
-﻿static void First()
+﻿using System;
+
+static void First()
 {
     string a = "1";
     int b = 2;
@@ -6,8 +8,7 @@
     double d = 4;
     float e = 5;
 
-    //fixme - should be 15 :|
-    int sum = Int32.Parse(a) + b + c + (int)d + (int)e;
+    int sum = int.Parse(a) + b + c + (int)d + (int)e;
     Console.WriteLine(sum);
 }
 
@@ -19,9 +20,6 @@ static void Second()
     double d = 4.2;
     float e = 5.3f;
 
-    //fixme - should be 15.5 :| 
-    float sum = Single.Parse(a) + b + c + d + e;
+    double sum = double.Parse(a) + b + c + d + e;
     Console.WriteLine(sum);
-}
-    }
 }
