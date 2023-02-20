@@ -102,7 +102,6 @@ namespace PhoneKeyPad
                         break;
                 }
             }
-
             Console.WriteLine("Phone keypad digits: " + result);
         }
     }
