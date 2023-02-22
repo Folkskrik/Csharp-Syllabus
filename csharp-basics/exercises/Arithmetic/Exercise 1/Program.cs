@@ -1,19 +1,19 @@
-﻿class Program
+﻿using System;
+
+class Program
 {
     static void Main(string[] args)
     {
-        int num1, num2, sum, diff;
-
         Console.Write("Enter the first number: ");
-        num1 = Convert.ToInt32(Console.ReadLine());
+        int num1 = int.Parse(Console.ReadLine());
 
         Console.Write("Enter the second number: ");
-        num2 = Convert.ToInt32(Console.ReadLine());
+        int num2 = int.Parse(Console.ReadLine());
 
-        sum = num1 + num2;
-        diff = num1 - num2;
+        int sum = Math.Add(num1, num2);
+        int diff = Math.Abs(Math.Subtract(num1, num2));
 
-        if (num1 == 15 || num2 == 15 || sum == 15 || diff == 15 || diff == -15)
+        if (num1 == 15 || num2 == 15 || sum == 15 || diff == 15)
         {
             Console.WriteLine("True");
         }

@@ -1,21 +1,23 @@
-﻿class Program
+﻿using System;
+
+class Program
 {
     static void Main(string[] args)
     {
-        int number;
-
         Console.Write("Enter an integer: ");
-        number = Convert.ToInt32(Console.ReadLine());
+        int number = int.Parse(Console.ReadLine());
 
+        string message;
         if (number % 2 == 0)
         {
-            Console.WriteLine("Even Number");
+            message = "Even Number";
         }
         else
         {
-            Console.WriteLine("Odd Number");
+            message = "Odd Number";
         }
 
+        Console.WriteLine(message);
         Console.WriteLine("bye!");
         Console.ReadLine();
     }
