@@ -13,12 +13,11 @@ public class Program
         string[] capNames2 = CapMe(names2);
         string[] capNames3 = CapMe(names3);
 
-        Console.WriteLine(string.Join(", ", capNames1)); // Mavis, Senaida, Letty
-        Console.WriteLine(string.Join(", ", capNames2)); // Samuel, Mabelle, Letitia, Meridith
-        Console.WriteLine(string.Join(", ", capNames3)); // Slyvia, Kristal, Sharilyn, Calista
+        Console.WriteLine(string.Join(", ", capNames1));
+        Console.WriteLine(string.Join(", ", capNames2));
+        Console.WriteLine(string.Join(", ", capNames3));
     }
-
-    public static string[] CapMe(string[] names)
+        public static string[] CapMe(string[] names)
     {
         return names.Select(name => char.ToUpper(name[0]) + name.Substring(1).ToLower()).ToArray();
     }
