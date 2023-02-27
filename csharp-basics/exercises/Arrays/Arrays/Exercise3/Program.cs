@@ -1,24 +1,30 @@
-﻿namespace Exercise3
+﻿using System;
+
+namespace Exercise3
 {
     class Program
     {
-        //TODO: Write a C# program to calculate the average value of array elements.
         private static void Main(string[] args)
         {
             int[] numbers = {20, 30, 25, 35, -16, 60, -100};
 
-            /*
-            fixme - calculate sum of all array elements 
             int sum = 0;
-            for (?){
-                
+            foreach (int number in numbers)
+            {
+                sum += number;
             }
-            */
+            Console.WriteLine("The sum of the numbers is: " + sum);
 
-            /*
-            fixme - calculate average value 
+            int sum1 = 0;
+
+            foreach (int number in numbers)
+            {
+                sum1 += number;
+            }
+
+            double average = (double)sum1 / numbers.Length;
+
             Console.WriteLine("Average value of the array elements is : " + average);
-            */
         }
     }
 }
