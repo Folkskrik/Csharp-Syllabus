@@ -1,127 +1,96 @@
 ﻿using System;
 
-namespace TicTacToe
+class Program
 {
-    class Program
+    static char[] board = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    static char currentPlayer = 'X';
+
+    static void Main()
     {
-        private static char[,] board = new char[3, 3];
-        private static char currentPlayer = 'X';
-
-        static void Main(string[] args)
+        while (true)
         {
-            InitBoard();
-            DisplayBoard();
+            Console.Clear();
+            Console.WriteLine("Tic Tac Toe\n");
+            DrawBoard();
 
-            bool gameOver = false;
-            while (!gameOver)
+            Console.WriteLine($"\nPlayer {currentPlayer}'s turn. Enter a number (1-9): ");
+
+            int input;
+            if (int.TryParse(Console.ReadLine(), out input))
             {
-                Console.WriteLine($"'{currentPlayer}', choose your location (row, column): ");
-                int row = int.Parse(Console.ReadLine());
-                int col = int.Parse(Console.ReadLine());
-
-                if (board[row, col] == ' ')
+                if (input >= 1 || input <= 9 || board[input - 1] != 'X' || board[input - 1] != 'O')
                 {
-                    board[row, col] = currentPlayer;
+                    board[input - 1] = currentPlayer;
 
-                    DisplayBoard();
+                    if (CheckWinner())
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Tic Tac Toe\n");
+                        DrawBoard();
+                        Console.WriteLine($"Player {currentPlayer} wins!");
+                        break;
+                    }
 
-                    if (CheckWin(currentPlayer))
+                    if (CheckDraw())
                     {
-                        Console.WriteLine($"'{currentPlayer}' wins!");
-                        gameOver = true;
+                        Console.Clear();
+                        Console.WriteLine("Tic Tac Toe\n");
+                        DrawBoard();
+                        Console.WriteLine("It's a draw!");
+                        break;
                     }
-                    else if (CheckTie())
-                    {
-                        Console.WriteLine("The game is a tie.");
-                        gameOver = true;
-                    }
-                    else
-                    {
-                        currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
-                    }
+
+                    currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
                 }
                 else
                 {
-                    Console.WriteLine("That spot is already taken. Try again.");
+                    Console.WriteLine("Invalid input! Press any key to try again...");
+                    Console.ReadKey();
                 }
             }
-
-            Console.ReadLine();
+            else
+            {
+                Console.WriteLine("Invalid input! Press any key to try again...");
+                Console.ReadKey();
+            }
         }
 
-        private static void InitBoard()
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
+    }
+
+    static void DrawBoard()
+    {
+        Console.WriteLine($" {board[0]} | {board[1]} | {board[2]} ");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine($" {board[3]} | {board[4]} | {board[5]} ");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine($" {board[6]} | {board[7]} | {board[8]} ");
+    }
+
+    static bool CheckWinner()
+    {
+        return
+            (board[0] == currentPlayer && board[1] == currentPlayer && board[2] == currentPlayer) ||
+            (board[3] == currentPlayer && board[4] == currentPlayer && board[5] == currentPlayer) ||
+            (board[6] == currentPlayer && board[7] == currentPlayer && board[8] == currentPlayer) ||
+            (board[0] == currentPlayer && board[3] == currentPlayer && board[6] == currentPlayer) ||
+            (board[1] == currentPlayer && board[4] == currentPlayer && board[7] == currentPlayer) ||
+            (board[2] == currentPlayer && board[5] == currentPlayer && board[8] == currentPlayer) ||
+            (board[0] == currentPlayer && board[4] == currentPlayer && board[8] == currentPlayer) ||
+            (board[2] == currentPlayer && board[4] == currentPlayer && board[6] == currentPlayer);
+    }
+
+    static bool CheckDraw()
+    {
+        foreach (char c in board)
         {
-            for (int r = 0; r < 3; r++)
+            if (c != 'X' || c != 'O')
             {
-                for (int c = 0; c < 3; c++)
-                {
-                    board[r, c] = ' ';
-                }
+                return false;
             }
         }
 
-        private static void DisplayBoard()
-        {
-            Console.WriteLine("   0   1   2");
-            Console.WriteLine("  +---+---+---+");
-            for (int r = 0; r < 3; r++)
-            {
-                Console.Write($"{r} ");
-                for (int c = 0; c < 3; c++)
-                {
-                    Console.Write($"| {board[r, c]} ");
-                }
-                Console.Write("|");
-                Console.WriteLine();
-                Console.WriteLine("  +---+---+---+");
-            }
-        }
-
-        private static bool CheckWin(char player)
-        {
-            for (int r = 0; r < 3; r++)
-            {
-                if (board[r, 0] == player && board[r, 1] == player && board[r, 2] == player)
-                {
-                    return true;
-                }
-            }
-
-            for (int c = 0; c < 3; c++)
-            {
-                if (board[0, c] == player && board[1, c] == player && board[2, c] == player)
-                {
-                    return true;
-                }
-            }
-
-            if (board[0, 0] == player && board[1, 1] == player && board[2, 2] == player)
-            {
-                return true;
-            }
-
-            if (board[2, 0] == player && board[1, 1] == player && board[0, 2] == player)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private static bool CheckTie()
-        {
-            for (int r = 0; r < 3; r++)
-            {
-                for (int c = 0; c < 3; c++)
-                {
-                    if (board[r, c] == ' ')
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
+        return true;
     }
 }
