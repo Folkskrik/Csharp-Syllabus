@@ -13,9 +13,7 @@ namespace Exercise2
             n = Convert.ToInt32(Console.ReadLine());
 
             result = 1;
-            /*
-            todo - complete loop to multiply i with itself n times, it is NOT allowed to use Math.Pow()
-            */
+         
             for (i = 0; i < n; i++)
             {
                 result *= n;
