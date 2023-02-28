@@ -1,5 +1,4 @@
 ﻿using System;
-
 class AsciiFigure
 {
     static void Main()
