@@ -25,7 +25,6 @@ namespace Exercise3
                     int number = numbers[position - 1];
                     Console.WriteLine("The number at position " + position + " is " + number + ".");
                 }
-
                 Console.ReadKey();
             }
         }
