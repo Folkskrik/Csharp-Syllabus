@@ -1,39 +1,62 @@
-﻿namespace FuelConsumptionCalculator
+﻿public class FuelGauge
 {
-    public
-class Car
+    private int currentFuel;
+
+    public FuelGauge()
     {
-        private double startKilometers;
-        private double endKilometers;
-        private double liters;
+        currentFuel = 0;
+    }
 
-        public Car(double startKilometers, double endKilometers, double liters)
+    public int GetCurrentFuel()
+    {
+        return currentFuel;
+    }
+
+    public void IncrementFuel()
+    {
+        if (currentFuel < 70)
         {
-            this.startKilometers = startKilometers;
-            this.endKilometers = endKilometers;
-            this.liters = liters;
+            currentFuel++;
+        }
+    }
+
+    public void DecrementFuel()
+    {
+        if (currentFuel > 0)
+        {
+            currentFuel--;
+        }
+    }
+}
+
+public class Odometer
+{
+    private int currentMileage;
+    private FuelGauge fuelGauge;
+
+    public Odometer(FuelGauge fuelGauge)
+    {
+        currentMileage = 0;
+        this.fuelGauge = fuelGauge;
+    }
+
+    public int GetCurrentMileage()
+    {
+        return currentMileage;
+    }
+
+    public void IncrementMileage()
+    {
+        currentMileage++;
+
+        if (currentMileage > 999999)
+        {
+            currentMileage = 0;
         }
 
-        public double CalculateConsumption()
+        if (currentMileage % 10 == 0)
         {
-            return 100 * this.liters / (this.endKilometers - this.startKilometers);
-        }
-
-        public bool GasHog()
-        {
-            return this.CalculateConsumption() > 15.0;
-        }
-
-        public bool EconomyCar()
-        {
-            return this.CalculateConsumption() < 5.0;
-        }
-
-        public void FillUp(int mileage, double liters)
-        {
-            this.startKilometers = this.endKilometers;
-            this.endKilometers = mileage;
-            this.liters = liters;
+            fuelGauge.DecrementFuel();
         }
     }
 }
