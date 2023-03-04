@@ -1,7 +1,6 @@
 ﻿namespace FuelConsumptionCalculator
 {
-    public
-class Car
+    public class Car
     {
         private double startKilometers;
         private double endKilometers;
