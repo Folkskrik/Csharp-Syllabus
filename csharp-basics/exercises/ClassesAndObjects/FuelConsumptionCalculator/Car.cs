@@ -1,33 +1,62 @@
-﻿namespace FuelConsumptionCalculator
+﻿public class FuelGauge
 {
-    public class Car
+    private int currentFuel;
+
+    public FuelGauge()
     {
-        public Car(double startOdo)
+        currentFuel = 0;
+    }
+
+    public int GetCurrentFuel()
+    {
+        return currentFuel;
+    }
+
+    public void IncrementFuel()
+    {
+        if (currentFuel < 70)
         {
+            currentFuel++;
+        }
+    }
+
+    public void DecrementFuel()
+    {
+        if (currentFuel > 0)
+        {
+            currentFuel--;
+        }
+    }
+}
+
+public class Odometer
+{
+    private int currentMileage;
+    private FuelGauge fuelGauge;
+
+    public Odometer(FuelGauge fuelGauge)
+    {
+        currentMileage = 0;
+        this.fuelGauge = fuelGauge;
+    }
+
+    public int GetCurrentMileage()
+    {
+        return currentMileage;
+    }
+
+    public void IncrementMileage()
+    {
+        currentMileage++;
+
+        if (currentMileage > 999999)
+        {
+            currentMileage = 0;
         }
 
-        public double CalculateConsumption()
+        if (currentMileage % 10 == 0)
         {
-            return 0;
-        }
-
-        private double ConsumptionPer100Km()
-        {
-            return 0;
-        }
-
-        public bool GasHog()
-        {
-            return ConsumptionPer100Km() > 15;
-        }
-
-        public bool EconomyCar()
-        {
-            return ConsumptionPer100Km() < 5;
-        }
-
-        public void FillUp(int mileage, double liters)
-        {
+            fuelGauge.DecrementFuel();
         }
     }
 }

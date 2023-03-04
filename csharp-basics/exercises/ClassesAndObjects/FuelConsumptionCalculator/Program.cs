@@ -10,30 +10,26 @@ namespace FuelConsumptionCalculator
     {
         private static void Main(string[] args)
         {
-            int startKilometers;
-            int liters;
-            
-            Console.WriteLine();
+            FuelGauge fuelGauge = new FuelGauge();
+            Odometer odometer = new Odometer(fuelGauge);
 
-            Car car = new Car(0);
-            Car car1 = new Car(0);
-            for (int i = 0; i < 3; i++)
+            Console.WriteLine("Filling up the car...");
+            for (int i = 0; i < 70; i++)
             {
-                Console.Write("Enter first reading: ");
-                startKilometers = Convert.ToInt32(Console.ReadLine());    
-                Console.Write("Enter liters reading: ");
-                liters = Convert.ToInt32(Console.ReadLine());
-                car.FillUp(startKilometers, liters);
-                
-                Console.Write("Enter first reading: ");
-                startKilometers = Convert.ToInt32(Console.ReadLine());    
-                Console.Write("Enter liters reading: ");
-                liters = Convert.ToInt32(Console.ReadLine());
-                car1.FillUp(startKilometers, liters);
+                fuelGauge.IncrementFuel();
             }
 
-            Console.WriteLine("Kilometers per liter are " + car.CalculateConsumption() + " gasHog:" + car.GasHog());
-            Console.WriteLine("Car1 Kilometers per liter are " + car1.CalculateConsumption()+ " economyCar:" + car.EconomyCar());
+            Console.WriteLine("Starting the journey...");
+            while (fuelGauge.GetCurrentFuel() > 0)
+            {
+                odometer.IncrementMileage();
+
+                Console.WriteLine("Current mileage: " + odometer.GetCurrentMileage() + " km");
+                Console.WriteLine("Current fuel: " + fuelGauge.GetCurrentFuel() + " L");
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("The car has run out of fuel.");
             Console.ReadKey();
         }
     }
