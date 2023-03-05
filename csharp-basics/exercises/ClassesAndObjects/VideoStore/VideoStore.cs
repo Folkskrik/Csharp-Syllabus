@@ -1,16 +1,4 @@
-﻿/*
- 
-The VideoStore may have the state of videos in there currently. The VideoStore will have the following behaviour:
-
-add a new video (by title) to the inventory;
-check out a video (by title);
-return a video to the store;
-take a user's rating for a video;
-list the whole inventory of videos in the store.
-
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace VideoStore

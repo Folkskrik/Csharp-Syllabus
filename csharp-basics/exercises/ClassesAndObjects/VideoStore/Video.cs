@@ -1,20 +1,4 @@
-﻿/*
-
-Assume that a Video may have the following state:
-
-A title;
-a flag to say whether it is checked out or not; and
-an average user rating.
-
-In addition, Video has the following behaviour:
-
-being checked out;
-being returned;
-receiving a rating.
-
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace VideoStore
@@ -29,7 +13,7 @@ namespace VideoStore
         public Video(string title)
         {
             this.title = title;
-            isCheckedOut = false; // Initialize as not checked out
+            isCheckedOut = false;
             totalRating = 0;
             ratingCount = 0;
         }

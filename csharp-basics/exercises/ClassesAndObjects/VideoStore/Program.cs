@@ -1,25 +1,4 @@
-﻿/*
- 
-Finally, create a VideoStoreTest which will test the functionality of your other two classes. It should allow the following:
-
-Add 3 videos: "The Matrix", "Godfather II", "Star Wars Episode IV: A New Hope".
-Give several ratings to each video.
-Rent each video out once and return it.
-List the inventory after "Godfather II" has been rented out out.
-
-Summary of design specs:
-
-Store a library of videos identified by title.
-Allow a video to indicate whether it is currently rented out.
-Allow users to rate a video and display the percentage of users that liked the video.
-Print the store's inventory, listing for each video:
-its title,
-the average rating,
-and whether it is checked out or on the shelves.
-
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
