@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ListExercise11
 {
@@ -10,19 +7,35 @@ namespace ListExercise11
     {
         static void Main(string[] args)
         {
-            //TODO: Create an List with string elements
+            List<string> list = new List<string>
+            {
+                "Car",
+                "Lightsaber",
+                "Magic",
+                "Wand",
+                "Red",
+                "Jet",
+                "PC",
+                "Movie",
+                "Game",
+                "Console"
+            };
 
-            //TODO: Add 10 values to list
+            list.Insert(4, "Anakin");
+            string lastPosition = list[list.Count - 1];
 
-            //TODO: Add new value at 5th position
+            list.Sort();
 
-            //TODO: Change value at last position (Calculate last position programmatically)
+            Console.WriteLine(string.Join(",", list));
 
-            //TODO: Sort your list in alphabetical order
-
-            //TODO: Check if your list contains "Foobar" element
-
-            //TODO: Print each element of list using loop
+            if (list.Contains("Foobar"))
+            {
+                Console.WriteLine("The list contains the element of Foobar.");
+            }
+            else
+            {
+                Console.WriteLine("The list does not contain the element of Foobar.");
+            }
         }
     }
 }
