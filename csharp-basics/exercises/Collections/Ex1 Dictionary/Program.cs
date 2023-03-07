@@ -1,4 +1,6 @@
-﻿string[] array = { "Audi", "BMW", "Honda", "Mercedes", "VolksWagen", "Mercedes", "Tesla" };
+﻿//todo - replace array with a Dictionary (use brand as key and origination as value) and print out the results
+
+string[] array = { "Audi", "BMW", "Honda", "Mercedes", "VolksWagen", "Mercedes", "Tesla" };
 Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
 foreach (string brand in array)
