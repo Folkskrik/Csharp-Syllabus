@@ -1,14 +1,16 @@
-﻿class Movie
+﻿using System;
+
+class Movie
 {
-    public string title;
-    public string studio;
-    public string rating;
+    private string _title;
+    private string _studio;
+    public string Rating;
 
     public Movie(string title, string studio, string rating)
     {
-        this.title = title;
-        this.studio = studio;
-        this.rating = rating;
+        _title = title;
+        _studio = studio;
+        Rating = rating;
     }
 
     public Movie(string title, string studio) : this(title, studio, "PG")
@@ -20,11 +22,16 @@
         List<Movie> pgMovies = new List<Movie>();
         foreach (Movie movie in movies)
         {
-            if (movie.rating == "PG")
+            if (movie.Rating == "PG")
             {
                 pgMovies.Add(movie);
             }
         }
         return pgMovies.ToArray();
+    }
+
+    public override string ToString() 
+    {
+        return "Title: " + _title + ", Studio: " + _studio + ", Rating: " + Rating;
     }
 }

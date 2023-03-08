@@ -13,7 +13,7 @@ class Program
         Movie[] pgMovies = Movie.GetPG(movies);
         foreach (Movie movie in pgMovies)
         {
-            Console.WriteLine("Title: " + movie.title + ", Studio: " + movie.studio + ", Rating: " + movie.rating);
+            Console.WriteLine(movie);
         }
     }
 }

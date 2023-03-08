@@ -20,17 +20,7 @@ public class Dog
 
     public bool HasSameMotherAs(Dog otherDog)
     {
-        if (Mother == null || otherDog.Mother == null)
-        {
-            return false;
-        }
-        else if (Mother.Name == otherDog.Mother.Name)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
+        return Mother.Name == otherDog.Mother.Name
         }
     }
 }

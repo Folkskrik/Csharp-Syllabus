@@ -2,29 +2,29 @@
 
 public class Product
 {
-    private string name;
-    private double price;
-    private int amount;
+    private string _name;
+    private double _price;
+    private int _amount;
 
     public Product(string name, double priceAtStart, int amountAtStart)
     {
-        this.name = name;
-        this.price = priceAtStart;
-        this.amount = amountAtStart;
+        _name = name;
+        _price = priceAtStart;
+        _amount = amountAtStart;
     }
 
     public void PrintProduct()
     {
-        Console.WriteLine($"{name}, price {price}, amount {amount}");
+        Console.WriteLine($"{_name}, price {_price}, amount {_amount}");
     }
 
     public void ChangeQuantity(int newQuantity)
     {
-        this.amount = newQuantity;
+        _amount = newQuantity;
     }
 
     public void ChangePrice(double newPrice)
     {
-        this.price = newPrice;
+        _price = newPrice;
     }
 }

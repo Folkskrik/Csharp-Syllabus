@@ -58,6 +58,7 @@ namespace Exercise_13
                     sortedIngredients[i] = sortedIngredients[i].Replace("berries", "berry");
                 }
             }
+
             string name = string.Join(" ", sortedIngredients);
             if (sortedIngredients.Count > 1)
             {

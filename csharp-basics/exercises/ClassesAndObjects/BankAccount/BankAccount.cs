@@ -4,25 +4,25 @@ namespace BankAccount
 {
     class BankAccount
     {
-        private string name;
-        private decimal balance;
+        private string _name;
+        private decimal _balance;
 
         public BankAccount(string name, decimal balance)
         {
-            this.name = name;
-            this.balance = balance;
+            _name = name;
+            _balance = balance;
         }
 
         public void Deposit(decimal amount)
         {
-            balance += amount;
+            _balance += amount;
         }
 
         public void Withdraw(decimal amount)
         {
-            if (balance >= amount)
+            if (_balance >= amount)
             {
-                balance -= amount;
+                _balance -= amount;
             }
             else
             {
@@ -32,18 +32,18 @@ namespace BankAccount
 
         public string ShowUserNameAndBalance()
         {
-            string balanceString = balance.ToString("0.00");
+            string balanceString = _balance.ToString("0.00");
 
-            if (balance < 0)
+            if (_balance < 0)
             {
-                balanceString = "-" + "$" + (-balance).ToString("0.00");
+                balanceString = "-" + "$" + (-_balance).ToString("0.00");
             }
             else
             {
                 balanceString = "$" + balanceString;
             }
 
-            return name + ", " + balanceString;
+            return _name + ", " + balanceString;
         }
     }
 }
