@@ -1,29 +1,27 @@
+using DragRace;
 using System;
 
-namespace DragRace
+public class Bmw : ICar
 {
-    public class Bmw
+    private int currentSpeed = 0;
+
+    public void SpeedUp()
     {
-        private int currentSpeed = 0;
+        currentSpeed += 8;
+    }
 
-        public void SpeedUp() 
-        {
-            currentSpeed;
-        }
+    public void SlowDown()
+    {
+        currentSpeed -= 8;
+    }
 
-        public void SlowDown() 
-        {
-            currentSpeed;
-        }
+    public string ShowCurrentSpeed()
+    {
+        return currentSpeed.ToString();
+    }
 
-        public string ShowCurrentSpeed() 
-        {
-            return currentSpeed.ToString();
-        }
-
-        public void StartEngine() 
-        {
-            Console.WriteLine("Rrrrrrr.....");
-        }
+    public void StartEngine()
+    {
+        Console.WriteLine("Rrrrrrr.....");
     }
 }

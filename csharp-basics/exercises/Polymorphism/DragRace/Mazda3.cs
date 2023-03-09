@@ -1,18 +1,18 @@
-using DragRace;
+﻿using DragRace;
 using System;
 
-public class Tesla : ICar
+public class Mazda3 : ICar, IBoostable
 {
     private int currentSpeed = 0;
 
     public void SpeedUp()
     {
-        currentSpeed += 11;
+        currentSpeed += 9;
     }
 
     public void SlowDown()
     {
-        currentSpeed -= 7;
+        currentSpeed -= 10;
     }
 
     public string ShowCurrentSpeed()
@@ -20,8 +20,12 @@ public class Tesla : ICar
         return currentSpeed.ToString();
     }
 
+    public void UseBoost()
+    {
+        currentSpeed += 11;
+    }
     public void StartEngine()
     {
-        Console.WriteLine("-- silence ---");
+        Console.WriteLine("Rrrrrrr.....");
     }
 }
