@@ -10,9 +10,13 @@ namespace AdApp
         {
         }
 
+        public Hoarding(int fee, int v1, int v2) : this(fee)
+        {
+        }
+
         public new int Cost() 
         {
-            return base.Cost();
+            return (int)base.Cost();
         }
 
         public override string ToString() 

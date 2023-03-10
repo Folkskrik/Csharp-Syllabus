@@ -19,7 +19,7 @@ namespace AdApp
 
         public int GetCost()
         {
-            return campaign.Sum(item => item.Cost());
+            return (int)campaign.Sum(item => item.Cost());
         }
 
         public override string ToString()
