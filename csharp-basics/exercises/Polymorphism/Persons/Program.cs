@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Persons
 {
@@ -6,10 +7,32 @@ namespace Persons
     {
         static void Main(string[] args)
         {
-            /*
-             * - Create an instant of class Student and an instant of class Employee with proper values for the attributes.
-             * - Display the content of each class using Display() method.
-             */
+            List<Animal> animals = new List<Animal>();
+
+            animals.Add(new Mouse("Jerry", 0.1, "House - Basement"));
+            animals.Add(new Zebra("Marty", 350, "Land - Africa"));
+            animals.Add(new Cat("Tom", 2.5, "Home", "Persian"));
+            animals.Add(new Tiger("Sergey", 200, "Jungle"));
+
+            Console.WriteLine(animals[0]);
+            animals[0].MakeSound();
+            animals[0].Eat(new Vegetable(3));
+            Console.WriteLine(animals[0]);
+
+            Console.WriteLine(animals[1]);
+            animals[1].MakeSound();
+            animals[1].Eat(new Meat(13));
+            Console.WriteLine(animals[1]);
+
+            Console.WriteLine(animals[2]);
+            animals[2].MakeSound();
+            animals[2].Eat(new Meat(3));
+            Console.WriteLine(animals[2]);
+
+            Console.WriteLine(animals[3]);
+            animals[3].MakeSound();
+            animals[3].Eat(new Vegetable(13));
+            Console.WriteLine(animals[3]);
         }
     }
 }
