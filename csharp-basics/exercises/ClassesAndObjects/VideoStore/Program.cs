@@ -21,7 +21,7 @@ namespace VideoStore
                 Console.WriteLine("Choose 3 to return video (as user)");
                 Console.WriteLine("Choose 4 to list inventory");
 
-                int n = Convert.ToByte(Console.ReadLine());
+                int n = Convert.ToInt32(Console.ReadLine());
 
                 switch (n)
                 {
@@ -39,8 +39,6 @@ namespace VideoStore
                     case 4:
                         ListInventory();
                         break;
-                    default:
-                        return;
                 }
             }
         }
@@ -58,7 +56,7 @@ namespace VideoStore
                 string movieName = Console.ReadLine();
 
                 Console.WriteLine("Enter rating");
-                int rating = Convert.ToInt16(Console.ReadLine());
+                int rating = Convert.ToInt32(Console.ReadLine());
 
                 _videoStore.AddVideo(movieName);
                 _videoStore.TakeUsersRating(rating, movieName);
@@ -69,14 +67,32 @@ namespace VideoStore
         {
             Console.WriteLine("Enter movie name");
             string movieName = Console.ReadLine();
-            _videoStore.Checkout(movieName);
+            bool isRented = _videoStore.Checkout(movieName);
+
+            if (isRented)
+            {
+                Console.WriteLine("Movie has been successfully rented");
+            }
+            else
+            {
+                Console.WriteLine("Movie is not available for renting");
+            }
         }
 
         private static void ReturnVideo()
         {
             Console.WriteLine("Enter movie name");
             string movieName = Console.ReadLine();
-            _videoStore.ReturnVideo(movieName);
+            bool isReturned = _videoStore.ReturnVideo(movieName);
+
+            if (isReturned)
+            {
+                Console.WriteLine("Movie has been successfully returned");
+            }
+            else
+            {
+                Console.WriteLine("Invalid movie name");
+            }
         }
     }
 }

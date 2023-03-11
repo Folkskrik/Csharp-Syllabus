@@ -1,40 +1,66 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FuelConsumptionCalculator
 {
     class Program
     {
-        private static void Main(string[] args)
+        static void Main()
         {
-            int startKilometers;
-            int liters;
-            
-            Console.WriteLine();
+            Car car1 = GetCarDataFromUser("Car 1");
+            Car car2 = GetCarDataFromUser("Car 2");
 
-            Car car = new Car(0);
-            Car car1 = new Car(0);
-            for (int i = 0; i < 3; i++)
+            PrintCarConsumption(car1, "Car 1");
+            PrintCarConsumption(car2, "Car 2");
+
+            CheckGasHogOrEconomyCar(car1, "Car 1");
+            CheckGasHogOrEconomyCar(car2, "Car 2");
+
+            FillUpCar(car1);
+            PrintCarConsumption(car1, "Car 1");
+        }
+
+        static Car GetCarDataFromUser(string carName)
+        {
+            Console.WriteLine($"Enter data for {carName}:");
+            Console.Write("Start kilometers: ");
+            double startKilometers = double.Parse(Console.ReadLine());
+
+            Console.Write("End kilometers: ");
+            double endKilometers = double.Parse(Console.ReadLine());
+
+            Console.Write("Liters of gas used: ");
+            double liters = double.Parse(Console.ReadLine());
+
+            return new Car(startKilometers, endKilometers, liters);
+        }
+
+        static void PrintCarConsumption(Car car, string carName)
+        {
+            Console.WriteLine($"{carName} consumption: {car.CalculateConsumption():F2} L/100km");
+        }
+
+        static void CheckGasHogOrEconomyCar(Car car, string carName)
+        {
+            if (car.GasHog())
             {
-                Console.Write("Enter first reading: ");
-                startKilometers = Convert.ToInt32(Console.ReadLine());    
-                Console.Write("Enter liters reading: ");
-                liters = Convert.ToInt32(Console.ReadLine());
-                car.FillUp(startKilometers, liters);
-                
-                Console.Write("Enter first reading: ");
-                startKilometers = Convert.ToInt32(Console.ReadLine());    
-                Console.Write("Enter liters reading: ");
-                liters = Convert.ToInt32(Console.ReadLine());
-                car1.FillUp(startKilometers, liters);
+                Console.WriteLine($"{carName} is a gas hog");
             }
+            else if (car.EconomyCar())
+            {
+                Console.WriteLine($"{carName} is an economy car");
+            }
+        }
 
-            Console.WriteLine("Kilometers per liter are " + car.CalculateConsumption() + " gasHog:" + car.GasHog());
-            Console.WriteLine("Car1 Kilometers per liter are " + car1.CalculateConsumption()+ " economyCar:" + car.EconomyCar());
-            Console.ReadKey();
+        static void FillUpCar(Car car)
+        {
+            Console.WriteLine("Filling up Car...");
+            Console.Write("New odometer reading: ");
+            double odometerReading = double.Parse(Console.ReadLine());
+
+            Console.Write("Liters of gas used: ");
+            double liters = double.Parse(Console.ReadLine());
+
+            car.FillUp((int)odometerReading, liters);
         }
     }
 }
