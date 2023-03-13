@@ -38,7 +38,8 @@ namespace FlightPlanner
                 flights[cities.First()].Add(cities.Last());
             }
 
-            while (true)
+            bool flightsRunning = true;
+            while (flightsRunning)
             {
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("To display the list of available cities, press 1");

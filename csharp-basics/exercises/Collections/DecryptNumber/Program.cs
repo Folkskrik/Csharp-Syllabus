@@ -26,7 +26,7 @@ namespace DecryptNumber
             }
         }
 
-        public static string DecryptString(string encryptedString)
+        private static string DecryptString(string encryptedString)
         {
             var decryptionTable = new Dictionary<char, char>
             {
