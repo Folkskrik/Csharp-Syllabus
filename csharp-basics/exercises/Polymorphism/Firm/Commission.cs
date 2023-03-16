@@ -6,14 +6,8 @@ namespace Firm
     {
         private double _totalSales;
         private double _commissionRate;
-        private double v;
 
-        public Commission(string eName, string eAddress, string ePhone, string socSecNumber, double rate, double v) : base(eName, eAddress, ePhone, socSecNumber, rate)
-        {
-            this.v = v;
-        }
-
-        public Commission(string eName, string eAddress, string ePhone, string socSecNumber, double rate, double commissionRate, int v, int v1)
+        public Commission(string eName, string eAddress, string ePhone, string socSecNumber, double rate, double commissionRate)
             : base(eName, eAddress, ePhone, socSecNumber, rate)
         {
             _totalSales = 0;
