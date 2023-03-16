@@ -1,31 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Persons
+﻿namespace Persons
 {
     public abstract class Animal
     {
-        public abstract string Name { get; set; }
-        public abstract string Type { get; set; }
-        public abstract string Weight { get; set; }
-        public abstract string FoodEaten { get; set;}
+        public abstract string _Name { get; set; }
+        public abstract string _Type { get; set; }
+        public abstract double _Weight { get; set; }
+        public abstract int _FoodEaten { get; set;}
 
         protected Animal(string name, string type, double weight)
         {
-            Name = name;
-            Type = type;
-            Weight = weight;
-            FoodEaten = 0;
+            _Name = name;
+            _Type = type;
+            _Weight = weight;
+            _FoodEaten = 0;
         }
 
         public abstract void MakeSound();
 
-        public abstract void Eat();
+        public abstract void Eat(Vegetable vegetable);
 
         public override string ToString()
         {
-            return $"{Type} [{Name}, {Weight:F1}, {FoodEaten}]";
+            return $"{_Type} [{_Name}, {_Weight:F1}, {_FoodEaten}]";
         }
+
+        internal abstract void Eat(Meat meat);
     }
 }

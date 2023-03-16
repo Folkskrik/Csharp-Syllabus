@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Persons
+﻿namespace Persons
 {
     public class Vegetable : Food
     {
         public Vegetable(int quantity)
             : base(quantity)
+        {
+        }
     }
 }

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Persons
+﻿namespace Persons
 {
     public abstract class Food
     {
-        public int Quantity { get; set; }
+        public int _Quantity { get; set; }
 
         protected Food(int quantity)
         {
-            Quantity = quantity;
+            _Quantity = quantity;
         }
     }
 }

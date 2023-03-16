@@ -25,7 +25,6 @@ namespace Hierarchy
 
             Console.WriteLine("Employee:");
             employee.Display();
-
         }
     }
 }

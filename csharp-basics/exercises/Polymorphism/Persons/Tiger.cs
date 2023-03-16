@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Persons
 {
@@ -16,15 +14,15 @@ namespace Persons
             Console.WriteLine("Rawr!");
         }
 
-        public override void Eat(Food food)
+        public void Eat(Food food)
         {
             if (food = Meat)
             {
-                FoodEaten += food.Quantity;
+                _FoodEaten += food._Quantity;
             }
             else
             {
-                Console.WriteLine("Tigers are not eating that type of food!")
+                Console.WriteLine("Tigers are not eating that type of food!");
             }
         }
     }

@@ -17,6 +17,11 @@ namespace DragRace
                 new Toyota()
             };
 
+            foreach (ICar car in cars)
+            {
+                car.StartEngine();
+            }
+
             for (int i = 0; i < 10; i++)
             {
                 foreach (ICar car in cars)

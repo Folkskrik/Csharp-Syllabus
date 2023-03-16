@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Persons
 {
@@ -13,24 +11,24 @@ namespace Persons
 
         public override void MakeSound()
         {
-            Console.WriteLine("Braaaayy")
+            Console.WriteLine("Braaaayy");
         }
 
-        public override void Eat(Food food)
+        public void Eat(Food food)
         {
             if(food is Vegetable)
             {
-                FoodEaten += (int)food.Quantity;
+                _FoodEaten += (int)food._Quantity;
             }
             else
             {
-                Console.WriteLine($"{AnimalType}s are not eating that type of food!");
+                Console.WriteLine($"{_Type}s are not eating that type of food!");
             }
         }
 
         public override string ToString()
         {
-            return $"{AnimalType} [{AnimalType}, {AnimalWeight.ToString("0.##")}, {LivingRegion}, {FoodEaten}]";
+            return $"{_Type} [{_Type}, {_Weight.ToString("0.##")}, {_LivingRegion}, {_FoodEaten}]";
         }
     }
 }

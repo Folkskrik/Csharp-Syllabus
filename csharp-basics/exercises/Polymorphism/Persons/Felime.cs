@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Persons
+﻿namespace Persons
 {
     public abstract class Felime : Mammal
     {
         protected Felime(string name, string type, double weight, string livingRegion)
-            :base(name, type, weight, livingRegion)
+            : base(name, type, weight, livingRegion)
+        {
+        }
     }
 }

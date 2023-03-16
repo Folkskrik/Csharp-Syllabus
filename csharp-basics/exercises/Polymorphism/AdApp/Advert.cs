@@ -19,7 +19,7 @@ namespace AdApp
             _fee = fee;
         }
 
-        public  virtual double Cost() 
+        public virtual double Cost() 
         {
             return _fee;
         }

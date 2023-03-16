@@ -1,31 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Persons
 {
     public class Cat : Felime
     {
-        public string Breed { get; set; }
+        public string _Breed { get; set; }
 
-        public Cat(string name. double weight, string livingRegion, string breed)
+        public Cat(string name, double weight, string livingRegion, string breed)
             : base(name, "Cat", weight, livingRegion)
         {
-            Breed = breed;
+            _Breed = breed;
         }
 
         public override void MakeSound()
         {
-            Console.WriteLine("Meow")
+            Console.WriteLine("Meow");
         }
 
-        public override void Eat(Food food)
+        public void Eat(Food food)
         {
-            FoodEaten += food.Quantity;
+            _FoodEaten += food._Quantity;
         }
 
         public override string ToString()
         {
-            return base,ToString() + $"{Breed}]";
+            return base.ToString() + $"{_Breed}]";
+        }
     }
 }

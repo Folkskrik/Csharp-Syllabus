@@ -6,27 +6,27 @@ namespace AdApp
 {
     public class Poster : Advert
     {
-        private double width;
-        private double height;
-        private int numCopies;
-        private double costPerCopy;
+        private double _width;
+        private double _height;
+        private int _numCopies;
+        private double _costPerCopy;
 
         public Poster(double width, double height, int numCopies, double costPerCopy)
         {
-            width = width;
-            height = height;
-            numCopies = numCopies;
-            costPerCopy = costPerCopy;
+            _width = width;
+            _height = height;
+            _numCopies = numCopies;
+            _costPerCopy = costPerCopy;
         }
 
         public override double Cost()
         {
-            return(int)(numCopies * costPerCopy);
+            return (_numCopies * _costPerCopy);
         }
 
         public override string ToString()
         {
-            return $"Poster: Width={width}, Height={height}, Copies={numCopies}, Cost per copy={costPerCopy}";
+            return $"Poster: Width={_width}, Height={_height}, Copies={_numCopies}, Cost per copy={_costPerCopy}";
         }
     }
 }

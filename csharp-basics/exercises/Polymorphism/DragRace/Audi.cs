@@ -3,21 +3,21 @@ using System;
 
 public class Audi : ICar
 {
-    private int currentSpeed = 0;
+    private int _currentSpeed = 0;
 
     public void SpeedUp()
     {
-        currentSpeed += 10;
+        _currentSpeed += 10;
     }
 
     public void SlowDown()
     {
-        currentSpeed -= 10;
+        _currentSpeed -= 10;
     }
 
     public string ShowCurrentSpeed()
     {
-        return currentSpeed.ToString();
+        return _currentSpeed.ToString();
     }
 
     public void StartEngine()

@@ -6,16 +6,16 @@ namespace MakeSounds
 {
     public class Parrot : ISound
     {
-        private string sound;
+        private string _sound;
 
         public Parrot(string sound)
         {
-            this.sound = sound;
+            _sound = sound;
         }
         
         public void PlaySound()
         {
-            Console.WriteLine(sound);
+            Console.WriteLine(_sound);
         }
     }
 }

@@ -3,21 +3,21 @@ using System;
 
 public class Toyota : ICar
 {
-    private int currentSpeed = 0;
+    private int _currentSpeed = 0;
 
     public void SpeedUp()
     {
-        currentSpeed += 7;
+        _currentSpeed += 7;
     }
 
     public void SlowDown()
     {
-        currentSpeed -= 8;
+        _currentSpeed -= 8;
     }
 
     public string ShowCurrentSpeed()
     {
-        return currentSpeed.ToString();
+        return _currentSpeed.ToString();
     }
 
     public void StartEngine()

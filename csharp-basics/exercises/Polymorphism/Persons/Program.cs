@@ -7,12 +7,13 @@ namespace Persons
     {
         static void Main(string[] args)
         {
-            List<Animal> animals = new List<Animal>();
-
-            animals.Add(new Mouse("Jerry", 0.1, "House - Basement"));
-            animals.Add(new Zebra("Marty", 350, "Land - Africa"));
-            animals.Add(new Cat("Tom", 2.5, "Home", "Persian"));
-            animals.Add(new Tiger("Sergey", 200, "Jungle"));
+            List<Animal> animals = new List<Animal>
+            {
+                new Mouse("Jerry", 0.1, "House - Basement"),
+                new Zebra("Marty", 350, "Land - Africa"),
+                new Cat("Tom", 2.5, "Home", "Persian"),
+                new Tiger("Sergey", 200, "Jungle")
+            };
 
             Console.WriteLine(animals[0]);
             animals[0].MakeSound();
