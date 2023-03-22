@@ -9,7 +9,7 @@ namespace FlightPlanner
 {
     class Program
     {
-        private const string Path = "C:\\Users\\aleks\\source\\repos\\CodeLex\\csharp-basics\\exercises\\Collections\\FlightPlanner\\flights.txt";
+        private const string Path = "../FlightPlanner/flights.txt";
         private static Dictionary<string, List<string>> flights;
 
         static void Main(string[] args)
