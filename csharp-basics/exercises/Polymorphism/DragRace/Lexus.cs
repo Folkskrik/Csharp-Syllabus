@@ -1,34 +1,32 @@
+using DragRace;
 using System;
 
-namespace DragRace
+public class Lexus : ICar, IBoostable
 {
-    public class Lexus
+    private int _currentSpeed = 0;
+
+    public void SpeedUp()
     {
-        private int currentSpeed = 0;
+        _currentSpeed += 8;
+    }
 
-        public void SpeedUp() 
-        {
-            currentSpeed;
-        }
+    public void SlowDown()
+    {
+        _currentSpeed -= 8;
+    }
 
-        public void SlowDown() 
-        {
-            currentSpeed;
-        }
+    public string ShowCurrentSpeed()
+    {
+        return _currentSpeed.ToString();
+    }
 
-        public string ShowCurrentSpeed() 
-        {
-            return currentSpeed.ToString();
-        }
+    public void UseBoost()
+    {
+        _currentSpeed += 10;
+    }
 
-        public void UseNitrousOxideEngine() 
-        {
-            currentSpeed;
-        }
-
-        public void StartEngine() 
-        {
-            Console.WriteLine("Rrrrrrr.....");
-        }
+    public void StartEngine()
+    {
+        Console.WriteLine("Rrrrrrr.....");
     }
 }

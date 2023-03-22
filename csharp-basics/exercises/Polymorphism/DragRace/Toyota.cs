@@ -1,18 +1,18 @@
-using DragRace;
+﻿using DragRace;
 using System;
 
-public class Tesla : ICar
+public class Toyota : ICar
 {
     private int _currentSpeed = 0;
 
     public void SpeedUp()
     {
-        _currentSpeed += 11;
+        _currentSpeed += 7;
     }
 
     public void SlowDown()
     {
-        _currentSpeed -= 7;
+        _currentSpeed -= 8;
     }
 
     public string ShowCurrentSpeed()
@@ -22,6 +22,6 @@ public class Tesla : ICar
 
     public void StartEngine()
     {
-        Console.WriteLine("-- silence ---");
+        Console.WriteLine("Rrrrrrr.....");
     }
 }

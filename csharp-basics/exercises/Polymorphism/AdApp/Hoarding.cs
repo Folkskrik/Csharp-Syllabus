@@ -10,7 +10,11 @@ namespace AdApp
         {
         }
 
-        public new int Cost() 
+        public Hoarding(int fee, int v1, int v2) : this(fee)
+        {
+        }
+
+        public new double Cost() 
         {
             return base.Cost();
         }
