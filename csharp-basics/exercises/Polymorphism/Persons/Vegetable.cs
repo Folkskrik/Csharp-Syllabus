@@ -1,10 +1,12 @@
 ﻿namespace Persons
 {
-    public class Vegetable : Food
+    public class Vegetable
     {
+        public int Quantity { get; set; }
+
         public Vegetable(int quantity)
-            : base(quantity)
         {
+            Quantity = quantity;
         }
     }
 }

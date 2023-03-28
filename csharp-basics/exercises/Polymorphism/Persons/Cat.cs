@@ -17,7 +17,7 @@ namespace Persons
             Console.WriteLine("Meow");
         }
 
-        public void Eat(Food food)
+        public override void Eat(Food food)
         {
             _FoodEaten += food._Quantity;
         }

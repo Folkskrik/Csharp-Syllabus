@@ -1,10 +1,9 @@
-﻿namespace Persons
+﻿public class Meat
 {
-    public class Meat : Food
+    public int Quantity { get; set; }
+
+    public Meat(int quantity)
     {
-        public Meat(int quantity)
-            : base(quantity)
-        {
-        }
+        Quantity = quantity;
     }
 }

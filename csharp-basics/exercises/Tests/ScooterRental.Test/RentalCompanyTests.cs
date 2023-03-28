@@ -36,7 +36,7 @@ namespace ScooterRental.Test
 
         [Test]
 
-        public void StartRent_InvalidIdProvided_ThrowsScooterNotFoundException()
+        public void EndRent_()
         {
 
         }

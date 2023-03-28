@@ -28,7 +28,7 @@ namespace Persons
 
         public override string ToString()
         {
-            return $"{_Type} [{_Type}, {_Weight.ToString("0.##")}, {_LivingRegion}, {_FoodEaten}]";
+            return $"{_Type} [{_Type}, {_Weight.ToString("0.##")}, {LivingRegion}, {_FoodEaten}]";
         }
     }
 }

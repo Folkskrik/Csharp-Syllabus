@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace VendingMachine
 {
@@ -51,7 +50,7 @@ namespace VendingMachine
 
         public Money ReturnMoney()
         {
-            Money moneyToReturn = _amount;
+            var moneyToReturn = _amount;
             _amount = new Money();
             return moneyToReturn;
         }

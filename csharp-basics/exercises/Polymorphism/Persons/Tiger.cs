@@ -5,7 +5,7 @@ namespace Persons
     public class Tiger : Felime
     {
         public Tiger(string name, double weight, string livingRegion)
-            :base(name, "Tiger", weight, livingRegion)
+            : base(name, "Tiger", weight, livingRegion)
         {
         }
 
@@ -14,16 +14,14 @@ namespace Persons
             Console.WriteLine("Rawr!");
         }
 
-        public void Eat(Food food)
+        public override void Eat(Vegetable vegetable)
         {
-            if (food = Meat)
-            {
-                _FoodEaten += food._Quantity;
-            }
-            else
-            {
-                Console.WriteLine("Tigers are not eating that type of food!");
-            }
+            Console.WriteLine("Tigers are not eating that type of food!");
+        }
+
+        public override void Eat(Meat meat)
+        {
+            _FoodEaten += meat.Quantity;
         }
     }
 }
