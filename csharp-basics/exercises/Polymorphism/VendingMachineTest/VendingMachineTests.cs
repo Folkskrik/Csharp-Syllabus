@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VendingMachine;
+using VendingMachine = VendingMachine.VendingMachine;
 
 namespace VendingMachineTest
 {
-    internal class VendingMachineTests
+    public class VendingMachineTests
     {
+        private IVendingMachine _machine;
+
+        [SetUp]
+        public void Setup()
+        {
+            _machine = new VendingMachine("yes");
+        }
     }
 }
