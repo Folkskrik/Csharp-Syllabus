@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace Persons
 {
@@ -14,14 +15,21 @@ namespace Persons
             Console.WriteLine("Rawr!");
         }
 
-        public override void Eat(Vegetable vegetable)
+        public override void Eat(Food food)
         {
-            Console.WriteLine("Tigers are not eating that type of food!");
+            if (food is Meat)
+            {
+                FoodEaten += (int)food.Quantity;
+            }
+            else
+            {
+                throw new TigroFoodInvalidException();
+            }
         }
 
-        public override void Eat(Meat meat)
+        public override string ToString()
         {
-            _FoodEaten += meat.Quantity;
+            return $"{Type} [{Name}, {Weight.ToString("0.##")}, {_livingRegion}, {FoodEaten}]";
         }
     }
 }

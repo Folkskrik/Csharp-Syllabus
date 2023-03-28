@@ -4,8 +4,7 @@ namespace Persons
 {
     public abstract class Mammal : Animal
     {
-        private string _livingRegion;
-
+        public string _livingRegion;
 
         protected Mammal(string name, string type, double weight, string livingRegion)
             : base(name, type, weight)

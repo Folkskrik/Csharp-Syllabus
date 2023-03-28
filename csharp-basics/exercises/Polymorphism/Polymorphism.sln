@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persons", "Persons\Persons.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine", "VendingMachine\VendingMachine.csproj", "{8EF5CE43-0CC8-4C1E-A257-F915425898B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarcyTest(Persons)", "PolyTests\HierarcyTest(Persons).csproj", "{EFE1F5F6-5E05-4142-BB74-1665ABF83AF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HierarcyTest", "PolyTests\HierarcyTest.csproj", "{EFE1F5F6-5E05-4142-BB74-1665ABF83AF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineTest", "VendingMachineTest\VendingMachineTest.csproj", "{83148520-3DDA-42A9-A0C4-3769D0542D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachineTest", "VendingMachineTest\VendingMachineTest.csproj", "{83148520-3DDA-42A9-A0C4-3769D0542D93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

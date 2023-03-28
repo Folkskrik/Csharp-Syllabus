@@ -6,24 +6,29 @@ namespace Persons
     {
         public Mouse(string name, double weight, string livingRegion)
             : base(name, "Mouse", weight, livingRegion)
-        { 
+        {
         }
 
-            public override void MakeSound()
+        public override void MakeSound()
         {
             Console.WriteLine("Squeeek");
         }
 
-        public void Eat(Food food)
+        public override void Eat(Food food)
         {
-            if (food = Vegetable)
+            if (food is Vegetable)
             {
-                _FoodEaten += food._Quantity;
+                FoodEaten += food.Quantity;
             }
             else
             {
-                Console.WriteLine($"{_Type}s are not eating that type of food!");
+                throw new MouseInvalidFoodException();
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Type} [{Name}, {Weight.ToString("0.##")}, {_livingRegion}, {FoodEaten}]";
         }
     }
 }
