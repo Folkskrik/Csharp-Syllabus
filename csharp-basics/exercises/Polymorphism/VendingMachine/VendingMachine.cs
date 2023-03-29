@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace VendingMachine
 {
     public class VendingMachine : IVendingMachine
     {
-        private readonly List<Product> _products;
+        public List<Product> _products;
         private Money _amount;
 
         public VendingMachine(string manufacturer)
@@ -62,12 +63,14 @@ namespace VendingMachine
                 return false;
             }
 
-            _products.Add(new Product
+            var product = new Product
             {
                 Name = name,
                 Price = price,
                 Available = count
-            });
+            };
+
+            _products.Add(product);
 
             return true;
         }

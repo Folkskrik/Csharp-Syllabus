@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
+using Moq;
 using Moq.AutoMock;
+using ScooterRental.Models;
 
 namespace ScooterRental.Test
 {
@@ -30,7 +32,7 @@ namespace ScooterRental.Test
             mock.Setup(x => x.GetScooterById("1")).Returns(scooter);
 
             _company.StartRent("1");
-
+            _mocker.GetMock<IRentalArchive>().Verify(s => s.AddRent("1", 1m, It.IsAny<DateTime>()), Times.One>());
             scooter.IsRented.Should().BeTrue();
         }
 
@@ -39,6 +41,14 @@ namespace ScooterRental.Test
         public void EndRent_()
         {
 
+        }
+
+        [Test]
+
+        public void CalculateIncome()
+        {
+            var rentals = new List<RentedScooter>();
+            _mocker.GetMock<>()
         }
     }
 }
