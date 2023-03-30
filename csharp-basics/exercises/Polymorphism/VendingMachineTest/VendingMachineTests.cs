@@ -1,21 +1,19 @@
-﻿using FluentAssertions;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Xml.Linq;
+﻿using System;
+using FluentAssertions;
 using VendingMachine;
 
 namespace VendingMachineTest
 {
     public class VendingMachineTests
     {
-        private IVendingMachine _machine;
-        private List<Product> _products;
+        private VendingMachine.VendingMachine _machine;
+        private Product[] _products;
 
         [SetUp]
         public void Setup()
         {
             _machine = new VendingMachine.VendingMachine("yes");
-            _products = new List<Product>();
+            _products = new Product[0];
         }
 
         [Test]
@@ -36,12 +34,92 @@ namespace VendingMachineTest
         public void HasProducts_ProductsAvailable_ReturnsTrue()
         {
             var machine = new VendingMachine.VendingMachine("yes");
-            machine.AddProduct("Pepsi", new Money(), 3);
+            machine.AddProduct("Pepsi", new Money(1,50), 3);
 
             var hasProducts = machine.HasProducts;
 
             hasProducts.Should().BeTrue();
         }
 
+        [Test]
+        public void _Products_Set_GetReturnsSameValue()
+        {
+            var expectedProducts = new Product[]
+            {
+                new Product { Name = "Skittles", Price = new Money(1, 0), Available = 3 },
+                new Product { Name = "Pepsi", Price = new Money(1, 50), Available = 5 }
+            };
+
+            _machine.Products = expectedProducts;
+            var actualProducts = _machine.Products;
+
+            actualProducts = _machine.Products;
+
+            actualProducts.Should().BeEquivalentTo(expectedProducts);
+        }
+
+        [Test]
+        public void AddProduct_ValidInput_ProductAdded()
+        {
+            var machine = new VendingMachine.VendingMachine("yes");
+            var expectedProduct = new Product { Name = "Skittles", Price = new Money(1,0),  Available = 3 };
+
+            var result = machine.AddProduct(expectedProduct.Name, expectedProduct.Price, expectedProduct.Available);
+
+            result.Should().BeTrue();
+        }
+
+        [Test]
+        public void AddProduct_InvalidInput_ReturnsFalse()
+        {
+            var machine = new VendingMachine.VendingMachine("yes");
+
+            var result = machine.AddProduct(null, new Money(1, 0), 3);
+
+            result.Should().BeFalse();
+        }
+
+        [Test]
+        public void InsertCoin_CoinInserted_AmountIncreases()
+        {
+            _machine.InsertCoin(new Money(1,0)).Should().Be(_machine.Amount);
+        }
+
+        [Test]
+        public void InsertCoin_TurnCentsToEuros_AmountIncreases()
+        {
+            var expectedMoney = new Money(2,50);
+
+            _machine.InsertCoin(new Money(0, 50));
+            _machine.InsertCoin(new Money(0, 50));
+            _machine.InsertCoin(new Money(0, 50));
+            _machine.InsertCoin(new Money(0, 50));
+            _machine.InsertCoin(new Money(0, 50));
+        }
+
+        [Test]
+        public void InvalidMoney_MoneyInvalid_InvalidMoney()
+        {
+            _machine.IsValidMoney(new Money(0, 30)).Should().BeFalse();
+        }
+
+        [Test]
+        public void ReturnMoney_InsertedNoMoney_ReturnsNoMoney()
+        {
+            var returnedMoney = _machine.ReturnMoney();
+
+            returnedMoney.Should().Be(new Money(0, 0));
+        }
+
+        [Test]
+        public void ReturnedMoney_InsertedMoney_InsertedMoneyReturns()
+        {
+            var insertedMoney = new Money(2, 50);
+            _machine.InsertCoin(insertedMoney);
+
+            var returnedMoney = _machine.ReturnMoney();
+
+            returnedMoney.Should().Be(insertedMoney);
+        }
     }
 }

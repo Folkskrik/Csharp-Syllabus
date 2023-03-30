@@ -1,42 +1,32 @@
-﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
+﻿using System;
 
 namespace VendingMachine
 {
     public class VendingMachine : IVendingMachine
     {
-        public List<Product> _products;
+        public Product[] _products;
         private Money _amount;
 
         public VendingMachine(string manufacturer)
         {
             Manufacturer = manufacturer;
-            _products = new List<Product>();
+            _products = new Product[0];
         }
 
         public string Manufacturer { get; }
 
-        public bool HasProducts => _products.Count > 0;
+        public bool HasProducts => _products.Length > 0;
 
         public Money Amount => _amount;
 
         public Product[] Products
         {
-            get { return _products.ToArray(); }
-            set
-            {
-                _products.Clear();
-                _products.AddRange(value);
-            }
+            get { return _products; }
+            set { _products = value; }
         }
 
         public Money InsertCoin(Money amount)
         {
-            if (!IsValidMoney(amount))
-            {
-                return amount;
-            }
-
             _amount.Euros += amount.Euros;
             _amount.Cents += amount.Cents;
 
@@ -46,13 +36,22 @@ namespace VendingMachine
                 _amount.Cents %= 100;
             }
 
-            return new Money();
+
+            return new Money(_amount.Euros, _amount.Cents);
+
         }
+
 
         public Money ReturnMoney()
         {
-            var moneyToReturn = _amount;
+            if (_amount.Euros == 0 && _amount.Cents == 0)
+            {
+                return new Money();
+            }
+
+            var moneyToReturn = new Money(_amount.Euros, _amount.Cents);
             _amount = new Money();
+
             return moneyToReturn;
         }
 
@@ -70,14 +69,15 @@ namespace VendingMachine
                 Available = count
             };
 
-            _products.Add(product);
+            Array.Resize(ref _products, _products.Length + 1);
+            _products[_products.Length - 1] = product;
 
             return true;
         }
 
         public bool UpdateProduct(int productNumber, string name, Money? price, int amount)
         {
-            if (productNumber < 0 || productNumber >= _products.Count)
+            if (productNumber < 0 || productNumber >= _products.Length)
             {
                 return false;
             }
@@ -102,29 +102,11 @@ namespace VendingMachine
             return true;
         }
 
-        private static bool IsValidMoney(Money money)
+        public bool IsValidMoney(Money money)
         {
-            switch (money.Euros)
-            {
-                case 0:
-                case 1:
-                case 2:
-                    break;
-                default:
-                    return false;
-            }
-
-            switch (money.Cents)
-            {
-                case 10:
-                case 20:
-                case 50:
-                    break;
-                default:
-                    return false;
-            }
-
-            return true;
+            bool isValid = (money.Euros >= 0 && money.Euros <= 2) &&
+                           (money.Cents == 0 || money.Cents == 10 || money.Cents == 20 || money.Cents == 50);
+            return isValid;
         }
     }
 }
