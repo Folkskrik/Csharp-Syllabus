@@ -88,11 +88,6 @@ namespace VendingMachine
             {
                 var tempName = productToUpdate.Name;
                 productToUpdate.Name = name;
-
-                if (tempName == productToUpdate.Name)
-                {
-                    return false;
-                }
             }
 
             if (price.HasValue)
