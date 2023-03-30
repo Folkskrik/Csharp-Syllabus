@@ -84,20 +84,36 @@ namespace VendingMachine
 
             var productToUpdate = _products[productNumber];
 
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name) && name != productToUpdate.Name)
             {
+                var tempName = productToUpdate.Name;
                 productToUpdate.Name = name;
+
+                if (tempName == productToUpdate.Name)
+                {
+                    return false;
+                }
             }
 
-            if (price.HasValue && IsValidMoney(price.Value))
+            if (price.HasValue)
             {
-                productToUpdate.Price = price.Value;
+                var newPrice = price.Value;
+                if (IsValidMoney(newPrice))
+                {
+                    productToUpdate.Price = newPrice;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
-            if (amount >= 0)
+            if (amount < 0)
             {
-                productToUpdate.Available = amount;
+                return false;
             }
+
+            productToUpdate.Available = amount;
 
             return true;
         }

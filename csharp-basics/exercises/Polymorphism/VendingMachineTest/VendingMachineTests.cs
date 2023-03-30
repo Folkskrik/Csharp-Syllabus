@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using NUnit.Framework.Internal;
 using VendingMachine;
 
 namespace VendingMachineTest
@@ -42,7 +43,7 @@ namespace VendingMachineTest
         }
 
         [Test]
-        public void _Products_Set_GetReturnsSameValue()
+        public void Products_Set_GetReturnsSameValue()
         {
             var expectedProducts = new Product[]
             {
@@ -77,6 +78,68 @@ namespace VendingMachineTest
             var result = machine.AddProduct(null, new Money(1, 0), 3);
 
             result.Should().BeFalse();
+        }
+
+        [Test]
+        public void UpdateProducts_ValidProductGiven_UpdatesProduct()
+        {
+            var machine = new VendingMachine.VendingMachine("yes");
+            machine.AddProduct("Pepsi", new Money(1, 50), 3);
+
+            var result = machine.UpdateProduct(0, "Coke", new Money(2, 0), 5);
+
+            result.Should().BeTrue();
+        }
+
+        [Test]
+        public void UpdateProducts_InvalidProductGiven_ProductNotUpdated()
+        {
+            var machine = new VendingMachine.VendingMachine("yes");
+            machine.AddProduct("Pepsi", new Money(1, 50), 3);
+
+            var result = machine.UpdateProduct(1, "Coke", new Money(2, 0), 5);
+
+            result.Should().BeFalse();
+        }
+
+        [Test]
+        public void UpdateProduct_InvalidPrice_ReturnsFalse()
+        {
+            var machine = new VendingMachine.VendingMachine("yes");
+            machine.AddProduct("Pepsi", new Money(2, 0), 5);
+
+            var result = machine.UpdateProduct(0, null, new Money(-1, 0), 3);
+
+            result.Should().BeFalse();
+            machine.Products[0].Price.Should().Be(new Money(2, 0));
+        }
+
+        [Test]
+        public void UpdateProduct_NegativeAmount_ReturnsFalse()
+        {
+            var machine = new VendingMachine.VendingMachine("yes");
+            machine.AddProduct("Pepsi", new Money(2, 0), 5);
+
+            var result = machine.UpdateProduct(0, "Coke", new Money(2, 0), -1);
+
+            result.Should().BeFalse();
+            machine.Products[0].Available.Should().Be(5);
+        }
+
+        [Test]
+        public void UpdateProduct_ProductNameUpdated_ReturnsTrue()
+        {
+            var machine = new VendingMachine.VendingMachine("yes");
+            machine.AddProduct("Pepsi", new Money(1, 50), 3);
+            var productToUpdate = machine.Products[0];
+            var newProductName = "Coke";
+
+            var result = machine.UpdateProduct(0, newProductName, null, 0);
+
+            result.Should().BeTrue();
+            machine.Products[0].Name.Should().Be(newProductName);
+            machine.Products[0].Name.Length.Should().Be(newProductName.Length);
+            machine.Products[0].Name.Should().Contain(newProductName.Substring(0, 3));
         }
 
         [Test]
