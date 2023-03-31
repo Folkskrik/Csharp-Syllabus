@@ -37,6 +37,7 @@ namespace ScooterRental.Test
             Action act = () =>
             {
                 _scooterService.AddScooter(null, 0.1m);
+
             };
             act.Should().Throw<ScooterIdNotProvidedException>();
         }
@@ -58,7 +59,6 @@ namespace ScooterRental.Test
             
             _scooterService.RemoveScooter("1");
 
-            _scooters.Any(x => x.Id == "1");
         }
 
         [Test]

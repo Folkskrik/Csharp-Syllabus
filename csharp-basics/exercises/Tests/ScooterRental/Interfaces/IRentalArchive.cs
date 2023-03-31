@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ScooterRental.Models;
 
 namespace ScooterRental.Interfaces
 {
-    internal class IRentalArchive
+    public interface IRentalArchive
     {
+        void AddRent(string id, decimal pricePerMinute, DateTime rentStart);
+
+        RentedScooter EndRent(string id, DateTime rentEnd);
+
+        IList<RentedScooter> GetRentedScooterArchive();
     }
 }

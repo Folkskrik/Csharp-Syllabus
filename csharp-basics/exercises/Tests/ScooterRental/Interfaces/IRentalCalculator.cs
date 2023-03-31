@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ScooterRental.Models;
+using ScooterRental.Services;
 
 namespace ScooterRental.Interfaces
 {
-    internal class IRentalCalculator
+    public interface IRentalCalculator
     {
+        decimal CalculateIncome(IList<RentedScooter> rentedScooters);
+        decimal CalculateRent(RentedScooter rental);
     }
 }
