@@ -8,8 +8,10 @@ namespace ScooterRental
         private IScooterService _scooterService;
         private IRentalCalculator _rentalCalculator;
         private IRentalArchive _rentedScooters;
+        private IList<IncomeRecords> _recordedIncome;
 
-        public RentalCompany(string name,
+        public RentalCompany(
+            string name,
             IScooterService scooterService,
             IRentalArchive rentedScooters,
             IRentalCalculator rentalCalculator
@@ -19,6 +21,7 @@ namespace ScooterRental
             _scooterService = scooterService;
             _rentalCalculator = rentalCalculator;
             _rentedScooters = rentedScooters;
+            _recordedIncome = new List<IncomeRecords>();
         }
 
         public string Name { get; }
@@ -26,66 +29,66 @@ namespace ScooterRental
         public void StartRent(string id)
         {
             var scooter = _scooterService.GetScooterById(id);
+
             _rentedScooters.AddRent(scooter.Id, scooter.PricePerMinute, DateTime.UtcNow);
             scooter.IsRented = true;
         }
 
         public decimal EndRent(string id)
         {
-            var scooter = _scooterService.GetScooterById(id);
-            var rental = _rentedScooters.EndRent(scooter.Id, DateTime.UtcNow);
-
-            if (rental == null)
+            if (string.IsNullOrEmpty(id))
             {
-                throw new InvalidOperationException("Scooter is not rented");
+                throw new ScooterIdNotProvidedException();
             }
+
+            var scooter = _scooterService.GetScooterById(id);
+
+            var rental = _rentedScooters.EndRent(scooter.Id, DateTime.UtcNow);
 
             scooter.IsRented = false;
 
             var rentalPrice = _rentalCalculator.CalculateRent(rental);
 
-            var rentalDuration = rental.EndTimeUtc - rental.StartTimeUtc;
-            if (rentalDuration >= TimeSpan.FromDays(1))
-            {
-                var rentalDays = (int)Math.Ceiling(rentalDuration.TotalDays);
-                var maxPricePerDay = 20m;
+            var money = new IncomeRecords() { Year = DateTime.Now.Year, Price = rentalPrice, };
 
-                var pricePerDay = rentalPrice / rentalDays;
-
-                if (pricePerDay > maxPricePerDay)
-                {
-                    rentalPrice = maxPricePerDay * rentalDays;
-                }
-            }
+            _recordedIncome.Add(money);
 
             return rentalPrice;
         }
 
         public decimal CalculateIncome(int? year, bool includeNotCompletedRentals)
         {
-            var rentedScooters = _rentedScooters.GetRentedScooterArchive();
+            var rentedScooters = _recordedIncome;
+
+            decimal endYearIncome = 0;
 
             if (year.HasValue)
             {
-                rentedScooters = rentedScooters.Where(r => r.StartTimeUtc.Year == year.Value).ToList();
-            }
-
-            if (includeNotCompletedRentals)
-            {
-                var now = DateTime.UtcNow;
-
-                foreach (var scooter in _scooterService.GetScooters())
+                foreach (var rentedScooter in rentedScooters)
                 {
-                    if (scooter.IsRented)
+                    if (year == rentedScooter.Year)
                     {
-                        var rental = new RentedScooter(scooter.Id, scooter.PricePerMinute, now);
-                        rentedScooters.Add(rental);
+                        endYearIncome += rentedScooter.Price;
                     }
                 }
             }
 
-            return _rentalCalculator.CalculateIncome(rentedScooters);
-        }
+            if (includeNotCompletedRentals)
+            {
+                foreach (var scooter in _rentedScooters.GetRentedScooterArchive())
+                {
+                    if (scooter.RentEnded == null)
+                    {
+                        var now = DateTime.UtcNow;
 
+                        decimal time = (decimal)(now - scooter.RentStarted).TotalMinutes;
+
+                        endYearIncome += time * scooter.PricePerMinute;
+                    }
+                }
+            }
+
+            return endYearIncome;
+        }
     }
 }

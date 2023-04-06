@@ -24,31 +24,24 @@ namespace ScooterRental.Test
         [Test]
         public void AddScooter_AddScooterWithoutId_ThrowsScooterIdNotProvidedException()
         {
-            Action act = () =>
-            {
-                _scooterService.AddScooter("", 0.1m);
-            };
+            Action act = () => _scooterService.AddScooter("", 0.1m);
+
             act.Should().Throw<ScooterIdNotProvidedException>();
         }
 
         [Test]
         public void AddScooter_AddScooterWithNullId_ThrowsScooterIdNotProvidedException()
         {
-            Action act = () =>
-            {
-                _scooterService.AddScooter(null, 0.1m);
+            Action act = () => _scooterService.AddScooter(null, 0.1m);
 
-            };
             act.Should().Throw<ScooterIdNotProvidedException>();
         }
 
         [Test]
         public void AddScooter_AddScooterWithNegativePrice_ThrowsInvalidPriceException()
         {
-            Action act = () =>
-            {
-                _scooterService.AddScooter("1", -0.1m);
-            };
+            Action act = () => _scooterService.AddScooter("1", -0.1m);
+
             act.Should().Throw<InvalidPriceException>();
         }
 
