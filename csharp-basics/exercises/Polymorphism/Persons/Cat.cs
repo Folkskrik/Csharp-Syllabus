@@ -17,14 +17,14 @@ namespace Persons
             Console.WriteLine("Meow");
         }
 
-        public void Eat(Food food)
+        public override void Eat(Food food)
         {
-            _FoodEaten += food._Quantity;
+            FoodEaten += food.Quantity;
         }
 
         public override string ToString()
         {
-            return base.ToString() + $"{_Breed}]";
+            return $"{Type} [{Name}, {Weight.ToString("0.##")}, {_livingRegion}, {FoodEaten}, {_Breed}]";
         }
     }
 }

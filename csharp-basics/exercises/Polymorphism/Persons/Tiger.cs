@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace Persons
 {
     public class Tiger : Felime
     {
         public Tiger(string name, double weight, string livingRegion)
-            :base(name, "Tiger", weight, livingRegion)
+            : base(name, "Tiger", weight, livingRegion)
         {
         }
 
@@ -14,16 +15,21 @@ namespace Persons
             Console.WriteLine("Rawr!");
         }
 
-        public void Eat(Food food)
+        public override void Eat(Food food)
         {
-            if (food = Meat)
+            if (food is Meat)
             {
-                _FoodEaten += food._Quantity;
+                FoodEaten += (int)food.Quantity;
             }
             else
             {
-                Console.WriteLine("Tigers are not eating that type of food!");
+                throw new TigroFoodInvalidException();
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Type} [{Name}, {Weight.ToString("0.##")}, {_livingRegion}, {FoodEaten}]";
         }
     }
 }

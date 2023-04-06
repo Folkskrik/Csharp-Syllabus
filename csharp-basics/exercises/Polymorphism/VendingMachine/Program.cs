@@ -38,7 +38,7 @@ namespace VendingMachine
             while (!quit)
             {
                 Console.WriteLine("Insert coin (10, 20, 50, 100, 200 cents) or 'q' to quit:");
-                string input = Console.ReadLine();
+                var input = Console.ReadLine();
 
                 if (input == "q")
                 {
@@ -107,8 +107,8 @@ namespace VendingMachine
 
         private static void DispenseProduct(string input)
         {
-            int productOption = int.Parse(input);
-            string productName = "";
+            var productOption = int.Parse(input);
+            var productName = "";
             switch (productOption)
             {
                 case 1:

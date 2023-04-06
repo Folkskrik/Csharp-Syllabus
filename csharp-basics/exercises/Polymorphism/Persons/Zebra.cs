@@ -14,21 +14,21 @@ namespace Persons
             Console.WriteLine("Braaaayy");
         }
 
-        public void Eat(Food food)
+        public override void Eat(Food food)
         {
             if(food is Vegetable)
             {
-                _FoodEaten += (int)food._Quantity;
+                FoodEaten += (int)food.Quantity;
             }
             else
             {
-                Console.WriteLine($"{_Type}s are not eating that type of food!");
+                throw new ZebaraFoodInvalidException();
             }
         }
 
         public override string ToString()
         {
-            return $"{_Type} [{_Type}, {_Weight.ToString("0.##")}, {_LivingRegion}, {_FoodEaten}]";
+            return $"{Type} [{Name}, {Weight.ToString("0.##")}, {_livingRegion}, {FoodEaten}]";
         }
     }
 }

@@ -2,11 +2,11 @@
 {
     public abstract class Food
     {
-        public int _Quantity { get; set; }
+        public int Quantity { get; set; }
 
-        protected Food(int quantity)
+        public Food(int quantity)
         {
-            _Quantity = quantity;
+            Quantity = quantity;
         }
     }
 }
